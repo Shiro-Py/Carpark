@@ -1,0 +1,30 @@
+{% extends 'vehicles/base.html' %}
+
+{% block content %}
+<h2>{% if form.instance.pk %}Редактировать автомобиль{% else %}Добавить автомобиль{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">{{ form.brand.label }}</label>
+        {{ form.brand }}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">{{ form.model.label }}</label>
+        {{ form.model }}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">{{ form.year.label }}</label>
+        {{ form.year }}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">{{ form.license_plate.label }}</label>
+        {{ form.license_plate }}
+    </div>
+    <div class="mb-3 form-check">
+        {{ form.is_active }}
+        <label class="form-check-label">{{ form.is_active.label }}</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'vehicle_list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}
